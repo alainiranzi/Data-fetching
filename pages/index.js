@@ -14,13 +14,15 @@ function HomePage(props) {
 
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
-  const jsonData = await fs.readFile(filePath, 'utf8');
-  const data = JSON.parse(jsonData);
+
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData.toString());
+
   return {
-     props: {
+    props: {
       products: data.products,
-  },
-};
+    },
+  };
 }
 
 export default HomePage;
